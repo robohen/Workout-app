@@ -12,9 +12,14 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = process.env.ATLAS.URI;
+const uri = process.env.ATLAS_URI;
 // this is added because it node parses the user on mongoDB, also handles the updates to mongoDB
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true}
+mongoose.connect(uri, //{ 
+    // these are integrated with version and are no longer supported
+    // useNewUrlParser: true, 
+    // useCreateIndex: true, 
+    // useFindAndModify: false, 
+    // useUnifiedTopology: true}
     );
 const connection = mongoose.connection;
 connection.once('open', ()=>{
